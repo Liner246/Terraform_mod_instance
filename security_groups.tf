@@ -48,3 +48,4 @@ resource "aws_security_group" "Jenkins_SG" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
