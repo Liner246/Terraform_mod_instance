@@ -11,6 +11,7 @@ resource "aws_vpc" "vpc_Jenkins" {
   tags = {
     Name = "vpc-jenkins"
   }
+}
   
 #Create IGW 
 resource "aws_internet_gateway" "igw" {
