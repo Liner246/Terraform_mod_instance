@@ -21,11 +21,11 @@ resource "aws_instance" "Jenkins" {
       host        = "${self.public_ip}"
   }	
   
-  provisioner "file" {
-    source      = "~/Terraform_mod_instance/Jenkins_files/"
-    destination = "/tmp/Jenkins-files"
+#  provisioner "file" {
+#    source      = "~/Terraform_mod_instance/Jenkins_files/"
+#    destination = "/tmp/Jenkins-files"
 		
-  }
+#  }
   
   provisioner "remote-exec" {
     inline = [
