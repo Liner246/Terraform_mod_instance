@@ -18,7 +18,7 @@ resource "aws_instance" "Jenkins" {
       type        = "ssh"
       user        = "ubuntu"
       private_key = "${file("~/Terraform_mod_instance/jenkins.pem")}"
-      #host        = "${self.public_ip}"
+      host        = "${self.public_ip}"
   }	
   
 #  provisioner "file" {
