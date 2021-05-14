@@ -49,3 +49,10 @@ resource "aws_route_table" "internet_route" {
     Name = "Master-Region-RT"
   }
 }
+
+#Overwrite default route table of VPC(Master) with our route table 
+resource "aws_main_route_table_association" "set-master-default-rt-assoc" {
+  provider       = aws.region-master
+  vpc_id         = aws_vpc.vpc_Jenkins.id
+  route_table_id = aws_route_table.internet_route.id
+}
