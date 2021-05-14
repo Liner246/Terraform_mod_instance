@@ -24,7 +24,6 @@ resource "aws_instance" "Jenkins" {
 #  provisioner "file" {
 #    source      = "~/Terraform_mod_instance/Jenkins_files/"
 #    destination = "/tmp/Jenkins-files"
-		
 #  }
   
   provisioner "remote-exec" {
@@ -40,5 +39,11 @@ resource "aws_instance" "Jenkins" {
 	  "sudo cp -rf /tmp/Jenkins-files/* /var/lib/jenkins",
 	  "sudo rm -rf /tmp/Jenkins-files",
     ]
+	connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = "${file("~/Terraform_mod_instance/jenkins.pem")}"
+      host        = "${self.public_ip}"
+    }	
   }
 }
