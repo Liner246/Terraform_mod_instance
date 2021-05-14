@@ -18,7 +18,7 @@ resource "aws_instance" "Jenkins" {
       type        = "ssh"
       user        = "ubuntu"
       private_key = "${file("~/Terraform_mod_instance/jenkins.pem")}"
-      host        = "${self.public_ip}"
+      #host        = "${self.public_ip}"
   }	
   
 #  provisioner "file" {
@@ -39,11 +39,6 @@ resource "aws_instance" "Jenkins" {
 	  "sudo cp -rf /tmp/Jenkins-files/* /var/lib/jenkins",
 	  "sudo rm -rf /tmp/Jenkins-files",
     ]
-	connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file("~/Terraform_mod_instance/jenkins.pem")}"
-      host        = "${self.public_ip}"
-    }	
+	
   }
 }

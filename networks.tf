@@ -32,3 +32,19 @@ resource "aws_subnet" "subnet_1" {
   vpc_id            = aws_vpc.vpc_Jenkins.id
   cidr_block        = "10.0.1.0/24"
 }
+
+#Create route table 
+resource "aws_route_table" "internet_route" {
+  provider = aws.region-master
+  vpc_id   = aws_vpc.vpc_Jenkins.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+  lifecycle {
+    ignore_changes = all
+  }
+  tags = {
+    Name = "Master-Region-RT"
+  }
+}
