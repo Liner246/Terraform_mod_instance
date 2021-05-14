@@ -29,29 +29,6 @@ variable "region-worker" {
   default = "us-east-2"
 }
 
-variable "server_port_8080" {
-  description = "The port the server will use for 8080 access"
-  type        = number
-  default     = 8080
-}
-
-variable "server_port_ssh" {
-  description = "The port the server will use for ssh access"
-  type        = number
-  default     = 22
-}
-
-variable "server_port_http" {
-  description = "The port the server will use for HTTP access"
-  type        = number
-  default     = 80
-}
-
-variable "server_port_https" {
-  description = "The port the server will use for HTTP access"
-  type        = number
-  default     = 443
-}
 
 #Count of Jenkins workers
 variable "workers-count" {
