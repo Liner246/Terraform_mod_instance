@@ -13,6 +13,7 @@ resource "aws_instance" "jenkins-master" {
   tags = {
     Name = "jenkins_master_tf"
   }
+  depends_on = [aws_main_route_table_association.set-master-default-rt-assoc]
   
   connection {
       type        = "ssh"
@@ -56,7 +57,7 @@ resource "aws_instance" "jenkins-worker" {
   tags = {
     Name = join("_", ["jenkins_worker_tf", count.index + 1])
   }
-  depends_on = [aws.instance.jenkins-master]
+  depends_on = [aws_main_route_table_association.set-master-default-rt-assoc, aws.instance.jenkins-master]
 }
   
 resource "aws_key_pair" "master-key" {
