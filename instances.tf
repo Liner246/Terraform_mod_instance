@@ -30,6 +30,7 @@ resource "aws_instance" "jenkins-master" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt update",
+	  "sudo apt install openjdk-11-jre-headless -y",
       "sudo apt install openjdk-11-jdk -y",
       "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
       "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
@@ -41,6 +42,12 @@ resource "aws_instance" "jenkins-master" {
 	  "sudo rm -rf /tmp/Jenkins-files",
     ]
 	
+  }
+  provisioner "local-exec" {
+    command = <<EOF
+       aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region-master} --instance-ids ${self.id}
+       ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' Ansible/master_common.yml
+    EOF
   }
 }
 

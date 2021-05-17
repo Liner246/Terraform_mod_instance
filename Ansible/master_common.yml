@@ -1,0 +1,10 @@
+---
+- hosts: "{{ passed_in_hosts }}"
+  become: yes
+  remote_user: ubuntu
+  become_user: root
+  tasks:
+    - name: install Git client
+      apt:
+        name: git
+        state: present
