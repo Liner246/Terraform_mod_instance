@@ -2,7 +2,7 @@
 # DEPLOY A JENKINS MASTER INSTANCE
 # ---------------------------------------------------------------------------------------------------------------------
 
-resource "aws_instance" "enkins-master" {
+resource "aws_instance" "jenkins-master" {
   provider = aws.region-master
   ami = var.instance-ami
   instance_type = var.instance-type
@@ -57,6 +57,7 @@ resource "aws_instance" "jenkins-worker" {
     Name = join("_", ["jenkins_worker_tf", count.intex + 1])
   }
   dpends_on = [aws.instance.jenkins-master]
+}
   
 resource "aws_key_pair" "master-key" {
   provider   = aws.region-master
