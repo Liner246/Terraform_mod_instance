@@ -54,7 +54,7 @@ resource "aws_instance" "jenkins-worker" {
   subnet_id   = aws_subnet.subnet_1.id
 
   tags = {
-    Name = join("_", ["jenkins_worker_tf", count.intex + 1])
+    Name = join("_", ["jenkins_worker_tf", count.index + 1])
   }
   dpends_on = [aws.instance.jenkins-master]
 }
