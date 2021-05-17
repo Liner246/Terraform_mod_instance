@@ -56,7 +56,7 @@ resource "aws_instance" "jenkins-worker" {
   tags = {
     Name = join("_", ["jenkins_worker_tf", count.index + 1])
   }
-  dpends_on = [aws.instance.jenkins-master]
+  depends_on = [aws.instance.jenkins-master]
 }
   
 resource "aws_key_pair" "master-key" {
