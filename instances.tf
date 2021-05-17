@@ -6,7 +6,7 @@ resource "aws_instance" "Jenkins" {
   provider = aws.region-master
   ami = var.instance-ami
   instance_type = "t2.micro"
-# key_name = "jenkins-new"
+  key_name = "jenkins-key"
   vpc_security_group_ids = [aws_security_group.Jenkins_SG.id]
   subnet_id   = aws_subnet.subnet_1.id
 
