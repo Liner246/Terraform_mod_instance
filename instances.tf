@@ -6,8 +6,7 @@ resource "aws_instance" "Jenkins" {
   provider = aws.region-master
   ami = var.instance-ami
   instance_type = "t2.micro"
-  key_name = "jenkins-new"
-  public_key = file("~/.ssh/id_rsa.pub")
+# key_name = "jenkins-new"
   vpc_security_group_ids = [aws_security_group.Jenkins_SG.id]
   subnet_id   = aws_subnet.subnet_1.id
 
@@ -42,4 +41,10 @@ resource "aws_instance" "Jenkins" {
     ]
 	
   }
+}
+
+resource "aws_key_pair" "jenkins-key" {
+  provider   = aws.region-master
+  key_name   = "jenkins-key"
+  public_key = file("~/.ssh/id_rsa.pub")
 }
