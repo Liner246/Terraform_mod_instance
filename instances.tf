@@ -2,23 +2,22 @@
 # DEPLOY A JENKINS MASTER INSTANCE
 # ---------------------------------------------------------------------------------------------------------------------
 
-resource "aws_instance" "Jenkins" {
+resource "aws_instance" "enkins-master" {
   provider = aws.region-master
   ami = var.instance-ami
-  instance_type = "t2.micro"
-  key_name = "jenkins-key"
+  instance_type = var.instance-type
+  key_name = aws_key_pair.master-key.key_name
   vpc_security_group_ids = [aws_security_group.Jenkins_SG.id]
   subnet_id   = aws_subnet.subnet_1.id
 
   tags = {
-    Name = "Jenkins-master"
+    Name = "jenkins_master_tf"
   }
   
   connection {
       type        = "ssh"
       user        = "ubuntu"
-#      private_key = "${file("~/Terraform_mod_instance/jenkins.pem")}"
-       private_key = "${file("~/.ssh/id_rsa")}"
+      private_key = "${file("~/.ssh/id_rsa")}"
       host        = "${self.public_ip}"
   }	
   
@@ -44,7 +43,22 @@ resource "aws_instance" "Jenkins" {
   }
 }
 
-resource "aws_key_pair" "jenkins-key" {
+
+resource "aws_instance" "jenkins-worker" {
+  provider = aws.region-master
+  count = var.workers-count
+  ami = var.instance-ami
+  instance_type = var.instance-type
+  key_name = aws_key_pair.master-key.key_name
+  vpc_security_group_ids = [aws_security_group.Jenkins_SG.id]
+  subnet_id   = aws_subnet.subnet_1.id
+
+  tags = {
+    Name = join("_", ["jenkins_worker_tf", count.intex + 1])
+  }
+  dpends_on = [aws.instance.jenkins-master]
+  
+resource "aws_key_pair" "master-key" {
   provider   = aws.region-master
   key_name   = "jenkins-key"
   public_key = file("~/.ssh/id_rsa.pub")
