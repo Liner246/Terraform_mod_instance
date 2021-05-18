@@ -8,3 +8,7 @@
       apt:
         name: git
         state: present
+    - name: install Nginx server
+      apt:
+        name: nginx
+        state: present
