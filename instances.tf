@@ -30,8 +30,9 @@ resource "aws_instance" "jenkins-master" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt update",
-	  "sleep 15",
-	  "sudo apt install openjdk-11-jre-headless -y",
+	  "sudo apt-get autoremove openjdk-1*",
+	  "sudo apt update",
+	  "sudo apt install sudo apt install default-jre -y",
       "sudo apt install openjdk-11-jdk -y",
       "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
       "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",

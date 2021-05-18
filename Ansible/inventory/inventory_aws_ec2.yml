@@ -11,6 +11,10 @@ regions:
 # a fatal error
 strict: False
 
+#set aws_access_key and secret_key.
+aws_access_key: AKIA4JQJACUKQC5JXWC5
+aws_secret_key: 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
+
 keyed_groups:
   #  each aws ec2 instance has it own instance tags. create  
   #  a tag variable from those tags for ansible to use. 
