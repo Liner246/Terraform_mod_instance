@@ -12,7 +12,7 @@ resource "aws_lb" "application-lb" {
 
 
 
-#Change port to variable in jenkins-sg group ingress rule which allows traffic from LB SG.
+#Change port to variable in jenkins-sg group ingress rule which allows traffic from LB SG
 
 resource "aws_lb_target_group" "app-lb-tg" {
   provider    = aws.region-master
@@ -50,5 +50,5 @@ resource "aws_lb_target_group_attachment" "jenkins-master-attach" {
   provider         = aws.region-master
   target_group_arn = aws_lb_target_group.app-lb-tg.arn
   target_id        = aws_instance.jenkins-master.id
-  port             = var.webserver-port
+  port             = "80"
 }
