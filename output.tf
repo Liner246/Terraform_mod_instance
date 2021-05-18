@@ -11,6 +11,3 @@ output "Worker_public_ip" {
   description = "The public IP of the Jenkins Master server"
 }
 
-output "LB-DNS-NAME" {
-  value = aws_lb.application-lb.dns_name
-}
