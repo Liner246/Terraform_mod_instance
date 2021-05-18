@@ -7,17 +7,17 @@ aws_profile: default
 #aws_secret_key: 
 strict: False
 
-filters:
-  tag:Name:
-    - jenkins_master*
-  instance-state-name : running
+#filters:
+#  tag:Name:
+#    - jenkins_master*
+#  instance-state-name : running
 keyed_groups:
   - key: tags
     prefix: tag
-  - key: 'security_groups|json_query("[].group_id")'
-    prefix: 'security_groups'
-  - key: instance_type
-    prefix: aws_instance_type
+#  - key: 'security_groups|json_query("[].group_id")'
+#    prefix: 'security_groups'
+#  - key: instance_type
+#    prefix: aws_instance_type
 
 hostnames:
 # a list in order of precedence for hostname variables.
@@ -25,9 +25,9 @@ hostnames:
   - ip-address
   - dns-name
   - tag:Name
-  - private-ip-address
+#  - private-ip-address
 
-compose:
+#compose:
   # Use the private IP address to connect to the host
   # (note: this does not modify inventory_hostname, which is set via I(hostname                                               s))
-  ansible_host: public_ip_address
+#  ansible_host: public_ip_address
