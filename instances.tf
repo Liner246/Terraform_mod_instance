@@ -42,7 +42,7 @@ resource "aws_instance" "jenkins-master" {
 	  "sudo usermod -aG jenkins ubuntu",
 	  "sudo chmod 775 /var/lib/jenkins",
 	  "sudo cp -rf /tmp/Jenkins-files/* /var/lib/jenkins",
-	  "sudo rm -rf /tmp/Jenkins-files",
+	  "sudo rm -rf /tmp/Jenkins-files"
     ]
 	
   }
