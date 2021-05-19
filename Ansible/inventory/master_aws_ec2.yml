@@ -7,10 +7,10 @@ aws_profile: default
 #aws_secret_key: 
 strict: False
 
-#filters:
-#  tag:Name:
-#    - jenkins_master*
-#  instance-state-name : running
+filters:
+  tag:Name:
+    - jenkins_master*
+  instance-state-name : running
 keyed_groups:
   - key: tags
     prefix: tag

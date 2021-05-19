@@ -34,14 +34,14 @@ resource "aws_instance" "jenkins-master" {
 	  "sudo apt update",
 	  "sudo apt install sudo apt install default-jre -y",
       "sudo apt install openjdk-11-jdk -y",
-      "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
-      "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
-      "sudo apt update",
-      "sudo apt install jenkins -y", 
-	  "sudo usermod -aG jenkins ubuntu",
-	  "sudo chmod 775 /var/lib/jenkins",
-	  "sudo cp -rf /tmp/Jenkins-files/* /var/lib/jenkins",
-	  "sudo rm -rf /tmp/Jenkins-files"
+     # "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
+     # "sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'",
+     # "sudo apt update",
+     # "sudo apt install jenkins -y", 
+	 # "sudo usermod -aG jenkins ubuntu",
+	 # "sudo chmod 775 /var/lib/jenkins",
+	 # "sudo cp -rf /tmp/Jenkins-files/* /var/lib/jenkins",
+	 # "sudo rm -rf /tmp/Jenkins-files"
     ]
 	
   }
